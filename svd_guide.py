@@ -5,17 +5,17 @@ import matplotlib.pyplot as plt # used to plot nice images of the digits
 from numpy.linalg import svd # used to compute residuals and svds
 
 ######################################## REPLACE WITH YOUR PATH
-TrainDigits = np.load('C:/Users/eriks/OneDrive/Desktop/Avverkade kurser/Beräkningsvetenskap för dataanalys/Miniproject 2/Digits/TrainDigits.npy')
-TrainLabels = np.load('C:/Users/eriks/OneDrive/Desktop/Avverkade kurser/Beräkningsvetenskap för dataanalys/Miniproject 2/Digits/TrainLabels.npy')
+TrainDigits = np.load('your path here')
+TrainLabels = np.load('your path here')
 
-TestDigits = np.load('C:/Users/eriks/OneDrive/Desktop/Avverkade kurser/Beräkningsvetenskap för dataanalys/Miniproject 2/Digits/TestDigits.npy')
-TestLabels = np.load('C:/Users/eriks/OneDrive/Desktop/Avverkade kurser/Beräkningsvetenskap för dataanalys/Miniproject 2/Digits/TestLabels.npy')
+TestDigits = np.load('your path here')
+TestLabels = np.load('your path here')
 ###########################################
 
 
 k = 10 # approximation rank (seach for low rank approximation if you're not familiar with this).
         # It basically how much information you want in your predictions. Higher is
-        # better to some extent. Up to around 10
+        # better to some extent. Up to around 10-15 in this case.
 train_images = 500 # number of training images 
 test_images = 100 # number of test images
 
@@ -27,7 +27,7 @@ def import_images():
 
     matrices = [np.empty((784, 0))]*10 # 10 matrices, one for each digit
     for i in range(train_images): 
-        image = np.row_stack(TrainDigits[:,i]) # stores each pizelof the image as a column vector
+        image = np.row_stack(TrainDigits[:,i]) # stores each pixel the image as a column vector
         digit = TrainLabels[:,i][0] # gets the label of the digit
 
         if matrices[digit].shape[1] < 50: # only use 50 training images per digit
@@ -55,7 +55,7 @@ def setup(matrices, svds, k):
     That is: to classify a digit we have to solve Ax=b. Or... not quite. It is enough to calculate the error this
     produces. That is, it's enough to calculate the residual to each test digit and then choosing the digit
     with the smallest relative error. It can be proven that the residual is I - U_k*U_k^t where I is the 
-    identity matrix and U is a factor in our SVD. W_k represents the low rank approximation to U. So we
+    identity matrix and U is a factor in our SVD. U_k represents the low rank approximation to U. So we
     basically have to compute I - U_k*U_k^T. The reason we use the low rank approximation is to fasten
     up the comnputation.
 
@@ -126,4 +126,4 @@ while True:
 
     plt.imshow(np.reshape(b_img, (28, 28)), cmap ='Grays') # plot test image
     plt.show() 
-#################################################################### print
+#################################################################### you're done
